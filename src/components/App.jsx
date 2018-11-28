@@ -10,14 +10,14 @@ function App() {
     marginRight: '500px',
     display: 'flex',
     
-  }
+  };
   return (
     <div>
       <style jsx global>{`
         
     
        `}</style>
-        <img style={styles} src={logo}/>
+      <img style={styles} src={logo}/>
       <Switch>
         <Route exact path='/' component={Pet} />
       </Switch>

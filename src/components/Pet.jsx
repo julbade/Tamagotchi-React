@@ -52,6 +52,7 @@ class Pet extends React.Component {
   }
 
   handleStartGame() {
+    this.setState({foodLevel: 100, energyLevel: 100, sleepLevel: 100 })
     this.setFoodGame = setInterval(() =>
       this.handleFoodCounter(),
     1000
@@ -67,21 +68,21 @@ class Pet extends React.Component {
   }
 
   handleFoodCounter() {
-    this.setState({ foodLevel: this.state.foodLevel - 1 });
+    this.setState({ foodLevel: this.state.foodLevel - 10 });
     if (this.state.foodLevel === 0) {
       clearInterval(this.setFoodGame);
     }
   }
 
   handleSleepCounter() {
-    this.setState({ sleepLevel: this.state.sleepLevel - 1 });
+    this.setState({ sleepLevel: this.state.sleepLevel - 10 });
     if (this.state.sleepLevel === 0) {
       clearInterval(this.setSleepGame);
     }
   }
 
   handleEnergyCounter() {
-    this.setState({ energyLevel: this.state.energyLevel - 1 });
+    this.setState({ energyLevel: this.state.energyLevel - 10});
     if (this.state.energyLevel === 0 ) {
       clearInterval(this.setEnergyGame);
     }
