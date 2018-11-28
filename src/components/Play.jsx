@@ -13,8 +13,8 @@ function Play(props) {
           }
           .energyNumber {
             font-size: 30px;
-            font-family: seriff;
-          }
+            font-family: monospace;
+          } 
        `}</style>
       <span>Energy Level</span>
       <br />

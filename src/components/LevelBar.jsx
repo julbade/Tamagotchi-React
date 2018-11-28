@@ -11,10 +11,11 @@ function LevelBar(props) {
       <style jsx >{`
           .numberCounterDisplay{
             background-color: red;
-            width: 500px;
+            width: 50%;
             height: 80px;
             display: flex;
             justify-content: space-around;
+            margin-left: 25%;
           }
        `}</style>
       <Feed foodLevel={props.foodLevel}/>

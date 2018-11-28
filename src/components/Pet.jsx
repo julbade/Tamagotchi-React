@@ -53,15 +53,15 @@ class Pet extends React.Component {
   handleStartGame() {
     this.setFoodGame = setInterval(() =>
       this.handleFoodCounter(),
-    200
+    1000
     );
     this.setSleepGame = setInterval(() =>
       this.handleSleepCounter(),
-    200
+    1000
     );
     this.setEnergyGame = setInterval(() =>
       this.handleEnergyCounter(),
-    200
+    1000
     );
   }
 
@@ -95,7 +95,10 @@ class Pet extends React.Component {
       <div>
         <style jsx>
           {`
-
+        img {
+          left: 700px;
+          position: relative;
+        }
         `}
         </style>
         <img src={agumonStand}/>

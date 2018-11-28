@@ -19,9 +19,13 @@ function Buttons (props) {
   return (
     <div>
       <style jsx>{`
-            display: inline-flex;
-            flex-direction: row;
+            display: flex;
+            position relative;
+            top: 200px;
+            left: 650px;
             
+
+
             `}</style>
       <FeedButton onClickFeedButton={FeedButtonFunc} />
       <SleepButton onClickSleepButton={SleepButtonFunc} />

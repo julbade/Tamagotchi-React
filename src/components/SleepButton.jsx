@@ -5,7 +5,8 @@ function SleepButton(props) {
   return (
     <div className="button">
       <style jsx >{`
-     
+        padding: 10px;
+
        `}</style>
       <button onClick={props.onClickSleepButton}><span>Sleep</span></button>
     </div>

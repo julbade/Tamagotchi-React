@@ -14,7 +14,7 @@ function Sleep (props) {
           }
           .sleepLevel {
             font-size: 30px;
-            font-family: seriff;
+            font-family: monospace;
           }
        `}</style>
       <span>Sleep Level</span>
