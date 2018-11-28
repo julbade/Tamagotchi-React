@@ -25,7 +25,10 @@ class Pet extends React.Component {
 
   StartButton() {
     setTimeout(this.handleStartGame, 2000);
+    if (this.foodLevel == 0, this.energyLevel == 0, this.sleepLevel == 0) {
+      clearInterval(); 
   }
+}
 
   FeedButton() {
     if (this.state.foodLevel <= 90) {
