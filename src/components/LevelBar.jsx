@@ -1,5 +1,5 @@
 import React from 'react';
-import Food from './Food';
+import Feed from './Feed';
 import Sleep from './Sleep';
 import Play from './Play';
 import PropTypes from 'prop-types';
@@ -17,13 +17,13 @@ function LevelBar(props) {
             justify-content: space-around;
           }
        `}</style>
-      <Food foodLevel={props.foodLevel}/>
+      <Feed foodLevel={props.foodLevel}/>
       <Sleep sleepLevel={props.sleepLevel}/>
-      <Play energyLevel={props.energyevel}/>
+      <Play energyLevel={props.energyLevel}/>
     </div>
   );
 }
-Level.propTypes = {
+LevelBar.propTypes = {
   foodLevel: PropTypes.number,
   sleepLevel: PropTypes.number,
   energyLevel: PropTypes.number

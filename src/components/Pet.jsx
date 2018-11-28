@@ -1,101 +1,115 @@
 import React from 'react';
-import agumonStand from '../img/agumonStand';
-import agumonTired from '../img/agumonTired';
+import LevelBar from './LevelBar';
+import Buttons from './Buttons';
+import agumonStand from './../assets/images/agumonStand.gif';
+// import agumonTired from './../assets/images/agumonTired.gif_c200';
 
 class Pet extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            foodLevel: 100,
-            sleepLevel: 0,
-            energyLevel: 0
-        };
+  constructor(props) {
+    super(props);
+    this.state = {
+      foodLevel: 100,
+      sleepLevel: 100,
+      energyLevel: 100
+    };
 
-        this.FeedButton = this.FeedButton.bind(this);
-        this.SleepButton = this.SleepButton.bind(this);
-        this.PlayButton = this.PlayButton.bind(this);
-        this.handleFoodCounter = this.handleFoodCounter.bind(this);
-        this.handleSleepCounter = this.handleSleepCounter.bind(this);
-        this.handleEnergyConter = this.handleEnergyCounter.bind(this);
-        this.handleStartGame = this.handleStartGame.bind(this);
+    this.FeedButton = this.FeedButton.bind(this);
+    this.SleepButton = this.SleepButton.bind(this);
+    this.PlayButton = this.PlayButton.bind(this);
+    this.handleFoodCounter = this.handleFoodCounter.bind(this);
+    this.handleSleepCounter = this.handleSleepCounter.bind(this);
+    this.handleEnergyConter = this.handleEnergyCounter.bind(this);
+    this.handleStartGame = this.handleStartGame.bind(this);
+  }
+
+  componentDidMount() {
+    setTimeout(this.handleStartGame, 2000);
+  }
+
+  FeedButton() {
+    if (this.state.foodLevel <= 90) {
+      this.setState({ foodLevel: this.state.foodLevel + 10 });
+    } else if (this.state.foodLevel == 100) {
+      this.setState({ foodLevel: 100 });
     }
+  }
 
-    componentDidMount() {
-        setTimeout(this.handleStartGame, 4000);
+  SleepButton() {
+    if (this.state.sleepLevel <= 90) {
+      this.setState({ sleepLevel: this.state.sleepLevel + 10 });
+    } else if (this.state.sleepLevel == 100) {
+      this.setState({ sleepLevel: 100 });
     }
+  }
 
-    FeedButton() {
-        if (this.state.foodLevel <= 90) {
-            this.setState({ foodLevel: this.state.foodLevel + 10 });
-        } else if (this.state.foodLevel >= 100) {
-            this.setState({ foodLevel: 100 });
-        }
+  PlayButton() {
+    if (this.state.energyLevel <= 90) {
+      this.setState({ energyLevel: this.state.energyLevel + 10 });
+    } else if (this.state.energyLevel == 100) {
+      this.setState({ energyLevel: 100 });
     }
+  }
 
-    SleepButton() {
-        if (this.state.sleepLevel >= 10) {
-            this.setState({ sleepLevel: this.state.sleepLevel - 10 });
-        } else if (this.state.sleepLevel <= 0) {
-            this.setState({ sleepLevel: 0 });
-        }
+  handleStartGame() {
+    this.setFoodGame = setInterval(() =>
+      this.handleFoodCounter(),
+    200
+    );
+    this.setSleepGame = setInterval(() =>
+      this.handleSleepCounter(),
+    200
+    );
+    this.setEnergyGame = setInterval(() =>
+      this.handleEnergyCounter(),
+    200
+    );
+  }
+
+  handleFoodCounter() {
+    this.setState({ foodLevel: this.state.foodLevel - 1 });
+    if (this.state.foodLevel === 0) {
+      clearInterval(this.setFoodGame);
     }
+  }
 
-    PlayButton() {
-        if (this.state.energyLevel >= 10) {
-            this.setState({ energyLevel: this.state.energyLevel - 10 });
-        } else if (this.state.energyLevel <= 0) {
-            this.setState({ energyLevel: 0 });
-        }
+  handleSleepCounter() {
+    this.setState({ sleepLevel: this.state.sleepLevel - 1 });
+    if (this.state.sleepLevel === 0) {
+      clearInterval(this.setSleepGame);
     }
+  }
 
-    handleStartGame() {
-        this.setFoodGame = setInterval(() =>
-            this.handleFoodCounter(),
-            1000
-        );
-        this.setSleepGame = setInterval(() =>
-            this.handleSleepCounter(),
-            1000
-        );
-        this.setEnergyGame = setInterval(() =>
-            this.handleEnergyCounter(),
-            1000
-        );
+  handleEnergyCounter() {
+    this.setState({ energyLevel: this.state.energyLevel - 1 });
+    if (this.state.energyLevel === 0 ) {
+      clearInterval(this.setEnergyGame);
     }
+  }
 
-    handleFoodCounter() {
-        this.setState({ foodLevel: this.state.foodLevel - 10 });
-        if (this.state.foodLevel === 0) {
-            clearInterval(this.setFoodGame);
-        }
-    }
+  tiredPet() {
+    this.setState ({ });
+  }
 
-    handleSleepCounter() {
-        this.setState({ sleepLevel: this.state.sleepLevel + 10 });
-        if (this.state.sleepLevel === 100) {
-            clearInterval(this.setSleepGame);
-        }
-    }
+  render() {
+    return (
+      <div>
+        <style jsx>
+          {`
 
-    handleEnergyCounter() {
-        this.setState({ energyLevel: this.state.energyLevel + 10 });
-        if (this.state.energyLevel === 100) {
-            clearInterval(this.setEnergyGame);
-        }
-    }
-
-    render() {
-        return (
-            <div>
-                <style jsx>
-                    {`
-          background-image: url('')
-        
         `}
-                </style>
-            </div>
-        );
-    }
+        </style>
+        <img src={agumonStand}/>
+        <Buttons passFeedButton={this.FeedButton}
+          passSleepButton={this.SleepButton} 
+          passPlayButton={this.PlayButton} 
+        />
+        <LevelBar foodLevel={this.state.foodLevel}
+          energyLevel={this.state.energyLevel} 
+          sleepLevel={this.state.sleepLevel} 
+        />
+      </div>
+    );
+  }
 }
 
 

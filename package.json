@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "css-loader": "^1.0.1",
+    "file-loader": "^2.0.0",
     "moment": "^2.18.1",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",

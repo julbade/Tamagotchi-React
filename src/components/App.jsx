@@ -1,9 +1,5 @@
 import React from 'react';
 import Pet from './Pet';
-// import Feed from './Feed';
-// import Play from './Play';
-// import Sleep from './Sleep';
-// import logo from '../img/logo';
 import { Switch, Route } from 'react-router-dom';
 
 function App() {
@@ -16,12 +12,12 @@ function App() {
          padding: 0;
        }
        body {
-         background-color: #0052ff;
+         background-color: pink;
          width: 100%;
        }
        `}</style>
       <Switch>
-        <Route exact path='/' component={ Pet } />
+        <Route exact path='/' component={Pet} />
       </Switch>
     </div>
   );
