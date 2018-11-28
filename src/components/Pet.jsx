@@ -16,13 +16,14 @@ class Pet extends React.Component {
     this.FeedButton = this.FeedButton.bind(this);
     this.SleepButton = this.SleepButton.bind(this);
     this.PlayButton = this.PlayButton.bind(this);
+    this.StartButton = this.StartButton.bind(this);
     this.handleFoodCounter = this.handleFoodCounter.bind(this);
     this.handleSleepCounter = this.handleSleepCounter.bind(this);
     this.handleEnergyConter = this.handleEnergyCounter.bind(this);
     this.handleStartGame = this.handleStartGame.bind(this);
   }
 
-  componentDidMount() {
+  StartButton() {
     setTimeout(this.handleStartGame, 2000);
   }
 
@@ -104,7 +105,8 @@ class Pet extends React.Component {
         <img src={agumonStand}/>
         <Buttons passFeedButton={this.FeedButton}
           passSleepButton={this.SleepButton} 
-          passPlayButton={this.PlayButton} 
+          passPlayButton={this.PlayButton}
+          passStartButton={this.StartButton} 
         />
         <LevelBar foodLevel={this.state.foodLevel}
           energyLevel={this.state.energyLevel} 

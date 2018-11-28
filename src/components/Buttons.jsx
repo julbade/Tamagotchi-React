@@ -3,6 +3,7 @@ import FeedButton from './FeedButton';
 import PlayButton from './PlayButton';
 import SleepButton from './SleepButton';
 import PropTypes from 'prop-types';
+import StartButton from './StartButton';
 
 
 function Buttons (props) {
@@ -14,6 +15,9 @@ function Buttons (props) {
   }
   function PlayButtonFunc() {
     props.passPlayButton();
+  }
+  function StartButtonFunc() {
+    props.passStartButton();
   }
 
   return (
@@ -30,6 +34,7 @@ function Buttons (props) {
       <FeedButton onClickFeedButton={FeedButtonFunc} />
       <SleepButton onClickSleepButton={SleepButtonFunc} />
       <PlayButton onClickPlayButton={PlayButtonFunc} />
+      <StartButton onClickStartButton={StartButtonFunc}/>
     </div>
   );
 }
@@ -38,6 +43,7 @@ Buttons.propTypes = {
   passFeedButton: PropTypes.func,
   passSleepButton: PropTypes.func,
   passPlayButton: PropTypes.func,
+  passStartButton: PropTypes.func,
 };
 
 export default Buttons;
