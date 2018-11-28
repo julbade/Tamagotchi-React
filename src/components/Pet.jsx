@@ -46,6 +46,9 @@ class Pet extends React.Component {
         }
     }
 
+    handleStartGame() {
+        this.setFood
+    }
 
 
 
