@@ -15,7 +15,10 @@ function LevelBar(props) {
             height: 80px;
             display: flex;
             justify-content: space-around;
-            margin-left: 25%;
+            margin: auto;
+            position: relative;
+            bottom: 250px;
+
           }
        `}</style>
       <Feed foodLevel={props.foodLevel}/>

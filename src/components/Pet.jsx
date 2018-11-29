@@ -12,6 +12,7 @@ class Pet extends React.Component {
       sleepLevel: 100,
       energyLevel: 100,
       petStatus: 0,
+
       
     };
 
@@ -28,8 +29,9 @@ class Pet extends React.Component {
 
   petAnimation() {
     var petImage = 0;
-    if(this.state.foodLevel < 1 || this.state.energyLevel < 1 || this.state.sleepLevel < 1 ) {
-      petImage = 1;
+    if(this.state.foodLevel < 1 && this.state.energyLevel < 1 && this.state.sleepLevel < 1 ) {
+      petImage = 1; 
+       
     } else if (this.state.foodLevel >= 1, this.state.energyLevel >= 1, this.state.sleepLevel >= 1 ) {
       petImage = 2;
     }
@@ -37,7 +39,7 @@ class Pet extends React.Component {
   }
 
   StartButton() {
-    setTimeout(this.handleStartGame, 2000);
+    setTimeout(this.handleStartGame, 1000);
    
   }
 
@@ -69,10 +71,10 @@ class Pet extends React.Component {
     clearInterval(this.setFoodGame);
     clearInterval(this.setSleepGame);
     clearInterval(this.setEnergyGame);
-    this.setState({foodLevel: 100, sleepLevel: 100, energyLevel: 100})
+    this.setState({foodLevel: 100, sleepLevel: 100, energyLevel: 100});
     this.killPet =  setInterval (() =>
       this.petAnimation(),
-      1000
+    1
     );
     this.setFoodGame = setInterval(() =>
       this.handleFoodCounter(),
@@ -109,35 +111,57 @@ class Pet extends React.Component {
     }
   }
 
-    
-
+  
+  
   render() {
+    let buttonDisabled = null;
     let currentImage = agumonStand;
-    if(this.state.petStatus === 2) {
+    if(this.state.petStatus === 2) { 
       currentImage = agumonStand;
     } else if (this.state.petStatus === 1) {
       currentImage = deadPet;
+    }
+
+    if (this.state.energyLevel > 0 || this.state.foodLevel > 0 || this.state.sleepLevel > 0){
+      buttonDisabled = 
+        <Buttons passFeedButton={this.FeedButton}
+          passSleepButton={this.SleepButton} 
+          passPlayButton={this.PlayButton}
+        />;
+    }
+    else {
+      buttonDisabled = null;
     }
     return (
       <div>
         <style jsx>
           {`
         img {
-          left: 600px;
+          left:620px;
+          bottom: 470px;
           position: relative;
-          height: 300px;
-          width: 400px
+          height: 280px;
+          width: 300px;
+          z-index: 2;
+          border-radius: 90px 90px 
+        }
+      
+
+        button {
+          margin-left: 770px;
+          background-color: green;
+          padding: 10px;
+          margin-top: 20px;
+          margin-bottom: 20px;
+          color: white;
         }
         `}
         </style>
-        <div hasClass='petAnimation'>
+        <div className='petAnimation'>
           <img src={currentImage}/>
         </div>
-        <Buttons passFeedButton={this.FeedButton}
-          passSleepButton={this.SleepButton} 
-          passPlayButton={this.PlayButton}
-          passStartButton={this.StartButton} 
-        />
+        <button onClick = {this.StartButton}>Start</button>
+        {buttonDisabled}
         <LevelBar foodLevel={this.state.foodLevel}
           energyLevel={this.state.energyLevel} 
           sleepLevel={this.state.sleepLevel} 

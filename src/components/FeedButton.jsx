@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
 function FeedButton(props) {
   return (
     <div className="button">
@@ -13,7 +14,7 @@ function FeedButton(props) {
 }
 
 FeedButton.propTypes = {
-  onClickFeedButton: PropTypes.func
+  onClickFeedButton: PropTypes.func,
 };
 
 export default FeedButton;
