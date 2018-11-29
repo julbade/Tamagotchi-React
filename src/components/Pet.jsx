@@ -2,7 +2,7 @@ import React from 'react';
 import LevelBar from './LevelBar';
 import Buttons from './Buttons';
 import agumonStand from './../assets/images/agumonStand.gif';
-// import agumonTired from './../assets/images/agumonTired.gif_c200';
+import deadPet from './../assets/images/rip.gif';
 
 class Pet extends React.Component {
   constructor(props) {
@@ -10,7 +10,9 @@ class Pet extends React.Component {
     this.state = {
       foodLevel: 100,
       sleepLevel: 100,
-      energyLevel: 100
+      energyLevel: 100,
+      petStatus: 0,
+      
     };
 
     this.FeedButton = this.FeedButton.bind(this);
@@ -23,12 +25,21 @@ class Pet extends React.Component {
     this.handleStartGame = this.handleStartGame.bind(this);
   }
 
+
+  petAnimation() {
+    var petImage = 0;
+    if(this.state.foodLevel < 1 || this.state.energyLevel < 1 || this.state.sleepLevel < 1 ) {
+      petImage = 1;
+    } else if (this.state.foodLevel >= 1, this.state.energyLevel >= 1, this.state.sleepLevel >= 1 ) {
+      petImage = 2;
+    }
+    this.setState({petStatus: petImage});
+  }
+
   StartButton() {
     setTimeout(this.handleStartGame, 2000);
-    if (this.foodLevel == 0, this.energyLevel == 0, this.sleepLevel == 0) {
-      clearInterval(); 
+   
   }
-}
 
   FeedButton() {
     if (this.state.foodLevel <= 90) {
@@ -55,7 +66,14 @@ class Pet extends React.Component {
   }
 
   handleStartGame() {
-    this.setState({foodLevel: 100, energyLevel: 100, sleepLevel: 100 })
+    clearInterval(this.setFoodGame);
+    clearInterval(this.setSleepGame);
+    clearInterval(this.setEnergyGame);
+    this.setState({foodLevel: 100, sleepLevel: 100, energyLevel: 100})
+    this.killPet =  setInterval (() =>
+      this.petAnimation(),
+      1000
+    );
     this.setFoodGame = setInterval(() =>
       this.handleFoodCounter(),
     1000
@@ -91,22 +109,30 @@ class Pet extends React.Component {
     }
   }
 
-  tiredPet() {
-    this.setState ({ });
-  }
+    
 
   render() {
+    let currentImage = agumonStand;
+    if(this.state.petStatus === 2) {
+      currentImage = agumonStand;
+    } else if (this.state.petStatus === 1) {
+      currentImage = deadPet;
+    }
     return (
       <div>
         <style jsx>
           {`
         img {
-          left: 700px;
+          left: 600px;
           position: relative;
+          height: 300px;
+          width: 400px
         }
         `}
         </style>
-        <img src={agumonStand}/>
+        <div hasClass='petAnimation'>
+          <img src={currentImage}/>
+        </div>
         <Buttons passFeedButton={this.FeedButton}
           passSleepButton={this.SleepButton} 
           passPlayButton={this.PlayButton}
